@@ -16,7 +16,14 @@ const index = (req,resp) => {
   })  
 }
 const show = (req,resp) => {
-  resp.send("show");
+  const {id} = req.params;
+   const query= `SELECT * FROM movies WHERE id = ?`;
+  db_connection.query(query,[id],(err,results)=>{
+    if(err){
+      return resp.status(500).json({error: "query failed" , id , err})
+    }
+    return resp.json(results);
+  }) 
 }
 const create = (req,resp) => {
   resp.send("create");
