@@ -1,4 +1,3 @@
 console.log("everithing works");
-const {DB_USER, DB_HOST, DB_PWD, DB_PORT, DB_NAME}= process.env
+const connection = require("../app/resources/db/db")
 
-console.log(DB_USER, DB_HOST, DB_PWD, DB_PORT,DB_NAME)
