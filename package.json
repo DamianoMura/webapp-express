@@ -8,7 +8,7 @@
   "main": "app/index.js",
   "scripts": {
     "start": "node app/app.js",
-    "watch": "node --watch app/app.js"
+    "watch": "node --watch --env-file=.env app/app.js"
   },
   "dependencies": {
     "express": "^5.1.0",
