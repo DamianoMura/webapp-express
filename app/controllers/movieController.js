@@ -3,7 +3,17 @@ const db_connection = require("../resources/db/db.js");
 
 
 const index = (req,resp) => {
-  resp.send("index");
+  //index for movies/
+  
+  const query= `
+    SELECT *
+    FROM movies`;
+  db_connection.query(query,(err,results)=>{
+    if(err){
+      return resp.status(500).json({error: "query failed"})
+    }
+    return resp.json(results);
+  })  
 }
 const show = (req,resp) => {
   resp.send("show");
