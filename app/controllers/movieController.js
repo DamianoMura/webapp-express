@@ -1,24 +1,24 @@
-const db_connection = require("../data/db.js");
+const db_connection = require("../resources/db/db.js");
 
 
 
-const index = () => {
-  console.log("index");
+const index = (req,resp) => {
+  resp.send("index");
 }
-const show = () => {
-  console.log("show");
+const show = (req,resp) => {
+  resp.send("show");
 }
-const create = () => {
-  console.log("create");
+const create = (req,resp) => {
+  resp.send("create");
 }
-const modify = () => {
-  console.log("modify");
+const modify = (req,resp) => {
+  resp.send("modify");
 }
-const update = () => {
-  console.log("update");
+const update = (req,resp) => {
+  resp.send("update");
 }
-const destroy = () => {
-  console.log("destroy");
+const destroy = (req,resp) => {
+  resp.send("destroy");
 }
 
 module.exports={

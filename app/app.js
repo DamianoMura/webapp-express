@@ -15,10 +15,14 @@ app.use(express.static('public/'));
 app.use(express.json());
 const connection = require("../app/resources/db/db")
 
+const moviesRoute = require('../app/routes/moviesRoute.js');
+
 app.get('/',(req,res)=>{
-  res.send('welcome to my movies list');
+  res.send('API server main page');
 })
 
+app.use('/movies', moviesRoute);
+
 app.listen(port,()=>{
-  console.log(`listening on port ${port}`);
+  console.log(`API server listening on port ${port}`);
 })
