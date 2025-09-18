@@ -15,3 +15,10 @@ app.use(express.static('public/'));
 app.use(express.json());
 const connection = require("../app/resources/db/db")
 
+app.get('/',(req,res)=>{
+  res.send('welcome to my movies list');
+})
+
+app.listen(port,()=>{
+  console.log(`listening on port ${port}`);
+})
