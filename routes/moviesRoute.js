@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 //we import the destructured controller 
-const {index , show , create , modify , update , destroy} = require('../controllers/movieController.js')
+const {index , show , create , modify , update , destroy} = require('../controllers/movieController')
 // define all routes
 
 //index 

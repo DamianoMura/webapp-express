@@ -8,8 +8,15 @@ const index = (req,res) => {
   const query= `SELECT * FROM movies`;
   db_connection.query(query,(err,results)=>{
     if(err) return res.status(500).json({error: "query failed"})
-   
-    return res.json(results);
+   const movies = results.map((movie)=>{
+      return(
+        {
+          ...movie,
+          image : req.imagePath+movie.image
+        }
+      )
+    })
+    res.send(movies)
   })  
 }
 const show = (req,res) => {
@@ -18,7 +25,7 @@ const show = (req,res) => {
    const query= `SELECT * FROM movies WHERE id = ?`;
   db_connection.query(query,[id],(err,results)=>{
     if(err) return res.status(500).json({error: "query failed" , id , err})
-    if(results.length === 0) return res.status(404).json({error: "Post non trovato"})
+    if(results.length === 0) return res.status(404).json({error: "Film non trovato"})
     return res.json(results);
   })
 }
