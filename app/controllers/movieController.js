@@ -2,40 +2,45 @@ const db_connection = require("../resources/db/db.js");
 
 
 
-const index = (req,resp) => {
+const index = (req,res) => {
   //index for movies/
-  
-  const query= `
-    SELECT *
-    FROM movies`;
+  console.log(res)
+  const query= `SELECT * FROM movies`;
   db_connection.query(query,(err,results)=>{
-    if(err){
-      return resp.status(500).json({error: "query failed"})
-    }
-    return resp.json(results);
+    if(err) return res.status(500).json({error: "query failed"})
+   
+    return res.json(results);
   })  
 }
-const show = (req,resp) => {
+const show = (req,res) => {
+  console.log(res.error)
   const {id} = req.params;
    const query= `SELECT * FROM movies WHERE id = ?`;
   db_connection.query(query,[id],(err,results)=>{
-    if(err){
-      return resp.status(500).json({error: "query failed" , id , err})
-    }
-    return resp.json(results);
-  }) 
+    if(err) return res.status(500).json({error: "query failed" , id , err})
+    if(results.length === 0) return res.status(404).json({error: "Post non trovato"})
+    return res.json(results[0]);
+  })
 }
-const create = (req,resp) => {
+const create = (req,res) => {
   resp.send("create");
 }
-const modify = (req,resp) => {
+const modify = (req,res) => {
   resp.send("modify");
 }
-const update = (req,resp) => {
+const update = (req,res) => {
   resp.send("update");
 }
-const destroy = (req,resp) => {
-  resp.send("destroy");
+const destroy = (req,res) => {
+  const {id} = req.params;
+   const query= `DELETE FROM movies WHERE id = ?`;
+  db_connection.query(query,[id],(err)=>{
+    if(err){
+      return res.status(500).json({error: "query failed" , id , err})
+    }
+    return res.status(204)
+    
+  }) 
 }
 
 module.exports={
