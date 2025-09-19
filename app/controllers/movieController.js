@@ -38,7 +38,7 @@ const destroy = (req,res) => {
     if(err){
       return res.status(500).json({error: "query failed" , id , err})
     }
-    return res.status(204).send()
+    else return res.status(204).send()
     
   }) 
 }
