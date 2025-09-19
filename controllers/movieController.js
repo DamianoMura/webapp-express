@@ -4,7 +4,6 @@ const db_connection = require("../resources/db/db.js");
 
 const index = (req,res) => {
   //index for movies/
-  console.log(res)
   const query= `SELECT * FROM movies`;
   db_connection.query(query,(err,results)=>{
     if(err) return res.status(500).json({error: "query failed"})
