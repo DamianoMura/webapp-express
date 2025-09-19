@@ -19,7 +19,7 @@ const show = (req,res) => {
   db_connection.query(query,[id],(err,results)=>{
     if(err) return res.status(500).json({error: "query failed" , id , err})
     if(results.length === 0) return res.status(404).json({error: "Post non trovato"})
-    return res.json(results[0]);
+    return res.json(results);
   })
 }
 const create = (req,res) => {
@@ -38,7 +38,7 @@ const destroy = (req,res) => {
     if(err){
       return res.status(500).json({error: "query failed" , id , err})
     }
-    return res.status(204)
+    return res.status(204).send()
     
   }) 
 }
