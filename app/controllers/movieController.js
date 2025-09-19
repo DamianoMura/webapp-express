@@ -13,7 +13,7 @@ const index = (req,res) => {
   })  
 }
 const show = (req,res) => {
-  console.log(res.error)
+ 
   const {id} = req.params;
    const query= `SELECT * FROM movies WHERE id = ?`;
   db_connection.query(query,[id],(err,results)=>{
@@ -38,7 +38,7 @@ const destroy = (req,res) => {
     if(err){
       return res.status(500).json({error: "query failed" , id , err})
     }
-    else return res.status(204).send()
+     res.sendtatus(204)
     
   }) 
 }
